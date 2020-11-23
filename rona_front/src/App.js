@@ -1,5 +1,6 @@
-import React, { useState, useEffect }  from 'react';
-import './App.css';
+import React, { useState } from "react";
+import BarChart from "./BarChart";
+import "./App.css";
 
 function getCookie(name) {
   let cookieValue = null;
@@ -18,25 +19,23 @@ function getCookie(name) {
 }
 
 function App() {
-  const [taskList, setTaskList] = useState([])
-
-  const todoList = () => {
-    let URL = `http://127.0.0.1:8000/api/`
-    fetch(URL)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-    });
-  }
-
-  useEffect(() => {
-    todoList()
-  },[]);
+  const [data, setData] = useState([25, 30, 45, 60, 10, 65, 75]);
 
   return (
-    <div className="container">
-
-    </div>
+    <React.Fragment>
+      <BarChart data={data} />
+      <button onClick={() => setData(data.map(value => value + 5))}>
+        Update data
+      </button>
+      <button onClick={() => setData(data.filter(value => value < 35))}>
+        Filter data
+      </button>
+      <button
+        onClick={() => setData([...data, Math.round(Math.random() * 100)])}
+      >
+        Add data
+      </button>
+    </React.Fragment>
   );
 }
 
