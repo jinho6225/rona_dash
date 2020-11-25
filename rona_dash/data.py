@@ -56,28 +56,49 @@ import datetime
 df = pd.read_csv('data/time_series_covid19_confirmed_US.csv')
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
-confirmed_df
+daily_confirmed_record_by_state = confirmed_df.drop(['Province_State'], axis=1)
+df = pd.DataFrame(daily_confirmed_record_by_state)
+def get_list(df):
+    lst = []
+    for col in df.columns: 
+        total_confirmed_count_list = df[col].tolist()   
+        lst.append(total_confirmed_count_list)
+    return lst
+array = get_list(df)
 
+def get_date_list(df):
+    date_lst = []
+    for col in df.columns: 
+        date_lst.append(col)
+    return date_lst
+date_array = get_date_list(df)
+
+province_list = confirmed_df[['Province_State']]
+province_list
+
+# total confirmed count list
+# it needs to get max number for xaxis
 x = datetime.datetime.now()
 year = str(x.year)[0:2]
-daily_report = f"{x.month}/{int(x.strftime('%d'))-1}/{year}"
-
+daily_report = f"{x.month}/{int(x.strftime('%d'))-2}/{year}"
 df = pd.read_csv('data/time_series_covid19_confirmed_US.csv')
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
-total_confirmed_df
-
+total_confirmed_count_list = total_confirmed_df.drop(['Province_State'], axis=1)
+# Creating DataFrame   
+df = pd.DataFrame(total_confirmed_count_list)   
+total_confirmed_count_list = df[daily_report].tolist()   
+max_total_confirmed_count = max(total_confirmed_count_list)
 # df = pd.read_csv('data/time_series_covid19_deaths_US.csv')
 # df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key', 'Population'], axis=1)
 # deaths_df = df.groupby("Province_State").sum().reset_index()
 # deaths_df
+
 '''
 github url 패턴중에 raw 란게 있습니다. 그걸로 받으시면 될듯
-
 9:29
 github/aaaa/aaa/blob/main/test.csv 란 경로가 있다면
-
 Olevi Rein  9:29 PM
 github/aaaa/aaa/raw/main/test.csv 로 받으시면 됩니다.
 '''
