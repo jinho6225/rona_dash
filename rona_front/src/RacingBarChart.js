@@ -6,12 +6,13 @@ function RacingBarChart({ data, maxTotal }) {
   const svgRef = useRef();
   const wrapperRef = useRef();
   const dimensions = useResizeObserver(wrapperRef);
-    console.log(data, 'data')
+
   // will be called initially and on every data change
   useEffect(() => {
     const svg = select(svgRef.current);
     if (!dimensions) return;
 
+    console.log(data)
     // sorting the data
     data.sort((a, b) => b.value - a.value);
 
@@ -21,10 +22,10 @@ function RacingBarChart({ data, maxTotal }) {
         .range([0, dimensions.height]);
 
     const xScale = scaleLinear()
-        .domain([0, maxTotal+500000])
+        .domain([0, maxTotal+50000])
         .range([0, dimensions.width]);
 
-    //draw the vars
+    //draw the bars
     svg.selectAll(".bar")
     .data(data, (entry, index) => entry.name)
     .join(enter => enter.append('rect').attr('y', (entry, index) => yScale(index)))
@@ -34,6 +35,7 @@ function RacingBarChart({ data, maxTotal }) {
     .attr('height', yScale.bandwidth())
     .transition()
     .attr('width', entry => xScale(entry.value))
+    .attr("y", (entry, index) => yScale(index));
 
     //draw the labels
     svg.selectAll('.label')
@@ -43,6 +45,7 @@ function RacingBarChart({ data, maxTotal }) {
     .attr('class', 'label')
     .attr('x', 10)
     .transition()
+    .attr("y", (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
 
   }, [data, dimensions]);
 

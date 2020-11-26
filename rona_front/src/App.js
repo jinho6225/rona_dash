@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import RacingBarChart from "./RacingBarChart";
 import useInterval from "./useInterval";
 import "./App.css";
 
 
-const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 const helper = (arr) => {
     let array = []
     for (let i = 0; i < arr.length; i++) {
+        let randomColor = Math.floor(Math.random()*16777215).toString(16);
         array.push({
             name: arr[i],
             value: 0,
@@ -19,9 +19,10 @@ const helper = (arr) => {
 }
 
 function App() {
-    const [iteration, setIteration] = useState(300);
+    const [iteration, setIteration] = useState(0);
     const [start, setStart] = useState(false);
-    const [data, setData] = useState([]);
+    const [confirmedData, setConfirmedData] = useState([]);
+    const isFirstRender = useRef(true)
 
     const [dataArr, setDataArr] = useState([])
     const [period, setPeriod] = useState([])
@@ -36,40 +37,49 @@ function App() {
             setPeriod(data.date_array)
             setMaxTotal(data.max_total_confirmed_count_list)
             setProvince(data.province_list)
-            let resultArr = helper(province)            
-            setData(resultArr)
+            isFirstRender.current = false
         })
     }, [])
+
+    useEffect(() => {
+        if (!isFirstRender.current) {
+            setConfirmedData(helper(province))
+        }
+    }, [province])
 
     
     useInterval(() => {
         if (start) {
-            console.log(iteration, 'start')
-
-            let resultArr = helper(province)  
-            console.log(resultArr)
+            let copied = JSON.parse(JSON.stringify(confirmedData))
+            copied.sort(function(a, b) {
+                var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                return -1;
+                }
+                if (nameA > nameB) {
+                return 1;
+                }            
+                return 0;
+            });            
             if (iteration < dataArr.length) {
                 for (let i = 0; i < dataArr[iteration].length; i++) {
-                    resultArr[i].value = dataArr[iteration][i]
+                    copied[i].value = dataArr[iteration][i]
                 }
-                setData(resultArr)
-                setIteration(iteration + 1);
-                console.log(dataArr.length, 'dataArr.length')
-                console.log(iteration, 'insde')
-
+                setConfirmedData(copied)
             }
-
+            setIteration(iteration + 1);
             if (iteration === dataArr.length) {
                 setStart(!start)
-                setIteration(300);
+                setIteration(0);
             }
         }
-    }, 1000);
+    }, 300);
 
     return (
         <>
         <h3 className='title'>Racing Bar Chart</h3>
-        <RacingBarChart data={data} maxTotal={maxTotal} />
+        <RacingBarChart data={confirmedData} maxTotal={maxTotal} />
         <button onClick={() => setStart(!start)}>
             {start ? "Stop the race" : "Start the race!"}
         </button>
