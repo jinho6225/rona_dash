@@ -1,5 +1,4 @@
 import pandas as pd
-
 import datetime
 # x = datetime.datetime.now()
 # daily_report = f"{x.month}-{int(x.strftime('%d'))-1}-{x.year}"
@@ -48,12 +47,12 @@ import datetime
 #     df = df.rename(columns={'index': 'date'})
 #     return df
 
-
 # final_province_us_df = make_province_confirmed_df('California')
 # cal_deaths = make_province_deaths_df('California')
 # final_province_us_df = final_province_us_df.merge(cal_deaths)
 
-df = pd.read_csv('data/time_series_covid19_confirmed_US.csv')
+url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
+df = pd.read_csv(url, error_bad_lines=False)
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
 daily_confirmed_record_by_state = confirmed_df.drop(['Province_State'], axis=1)
@@ -81,7 +80,10 @@ province_list
 x = datetime.datetime.now()
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))-2}/{year}"
-df = pd.read_csv('data/time_series_covid19_confirmed_US.csv')
+
+url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
+df = pd.read_csv(url, error_bad_lines=False)
+
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
