@@ -1,4 +1,4 @@
-import { select, scaleBand, scaleLinear, max } from "d3";
+import { select, scaleBand, scaleLinear, axisBottom, axisLeft } from "d3";
 import React, { useEffect, useRef } from "react";
 import useResizeObserver from "./useResizeObserver";
 
@@ -11,8 +11,6 @@ function RacingBarChart({ data, maxTotal }) {
   useEffect(() => {
     const svg = select(svgRef.current);
     if (!dimensions) return;
-
-    console.log(data)
     // sorting the data
     data.sort((a, b) => b.value - a.value);
 
@@ -32,7 +30,7 @@ function RacingBarChart({ data, maxTotal }) {
     .attr('fill', entry => entry.color)
     .attr("class", "bar")
     .attr('x', 0)
-    .attr('height', yScale.bandwidth())
+    .attr('height', Math.floor(yScale.bandwidth()) - 1)
     .transition()
     .attr('width', entry => xScale(entry.value))
     .attr("y", (entry, index) => yScale(index));
@@ -43,17 +41,21 @@ function RacingBarChart({ data, maxTotal }) {
     .join(enter => enter.append('text').attr('y', (entry, index) => yScale(index) +  yScale.bandwidth() / 2 + 5))
     .text(entry => `${entry.name} (${entry.value} confirmed)`)
     .attr('class', 'label')
-    .attr('x', 10)
+    .attr('x', entry => xScale(entry.value) + 10)
     .transition()
     .attr("y", (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
 
   }, [data, dimensions]);
 
-  return (
-    <div ref={wrapperRef} style={{ marginBottom: "1rem" }}>
-      <svg ref={svgRef}></svg>
+    return (
+    <div ref={wrapperRef} style={{ marginBottom: "0.3rem" }}>
+        <svg ref={svgRef}>
+            {/* <g className="x-axis" /> */}
+            <g className="y-axis" />
+
+        </svg>
     </div>
-  );
+    );
 }
 
 export default RacingBarChart;

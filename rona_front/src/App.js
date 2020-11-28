@@ -74,16 +74,18 @@ function App() {
                 setIteration(0);
             }
         }
-    }, 300);
+    }, 200);
 
     return (
         <>
-        <h3 className='title'>Racing Bar Chart</h3>
-        <RacingBarChart data={confirmedData} maxTotal={maxTotal} />
-        <button onClick={() => setStart(!start)}>
-            {start ? "Stop the race" : "Start the race!"}
-        </button>
-        <p className="date">Date: {period[iteration]}</p>
+            <h4 className='title' style={{ marginBottom: "0.3rem" }} >
+            Total Confirmed by U.S. State
+                <span className="date"> (Date: {period[iteration]})</span>
+            </h4>
+            <RacingBarChart data={confirmedData} maxTotal={maxTotal} />
+            <button onClick={() => setStart(!start)}>
+                {start ? "Stop the race" : "Start the race!"}
+            </button>
         </>
     );
 }
