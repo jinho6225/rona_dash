@@ -55,8 +55,10 @@ url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_cov
 df = pd.read_csv(url, error_bad_lines=False)
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
+confirmed_df = confirmed_df.drop(2)
 daily_confirmed_record_by_state = confirmed_df.drop(['Province_State'], axis=1)
 df = pd.DataFrame(daily_confirmed_record_by_state)
+df
 def get_list(df):
     lst = []
     for col in df.columns: 
@@ -71,9 +73,11 @@ def get_date_list(df):
         date_lst.append(col)
     return date_lst
 date_array = get_date_list(df)
+date_array
 
 province_list = confirmed_df[['Province_State']]
 province_list
+
 
 # total confirmed count list
 # it needs to get max number for xaxis
@@ -86,21 +90,10 @@ df = pd.read_csv(url, error_bad_lines=False)
 
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
+confirmed_df = confirmed_df.drop(2)
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
 total_confirmed_count_list = total_confirmed_df.drop(['Province_State'], axis=1)
 # Creating DataFrame   
 df = pd.DataFrame(total_confirmed_count_list)   
 total_confirmed_count_list = df[daily_report].tolist()   
 max_total_confirmed_count = max(total_confirmed_count_list)
-# df = pd.read_csv('data/time_series_covid19_deaths_US.csv')
-# df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key', 'Population'], axis=1)
-# deaths_df = df.groupby("Province_State").sum().reset_index()
-# deaths_df
-
-'''
-github url 패턴중에 raw 란게 있습니다. 그걸로 받으시면 될듯
-9:29
-github/aaaa/aaa/blob/main/test.csv 란 경로가 있다면
-Olevi Rein  9:29 PM
-github/aaaa/aaa/raw/main/test.csv 로 받으시면 됩니다.
-'''
