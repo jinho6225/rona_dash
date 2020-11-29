@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    path('', views.apiOverview, name="api_overview"),
+    path('overview/', views.overview, name="overview"),
     # path('post-list/', views.PostList.as_view(), name="task-list"),
     # path('post-detail/<int:pk>', views.post_list, name="task-list"),
 
