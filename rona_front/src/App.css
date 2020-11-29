@@ -1,11 +1,18 @@
 .container {
-  max-width: 1600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.chart_container {
+  /* max-width: 1600px; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
-  column-gap: 2%;
+  grid-template-columns: repeat(2, minmax(650px, 1fr));
+  column-gap: 6%;
   /* row-gap: 2%; */
   grid-auto-rows: minmax(150px, auto);
-  margin: 3% auto;
+  /* margin: 1%; */
   /* height: 100vh; */
   padding: 10px 15px;
   text-align: center;
@@ -13,10 +20,10 @@
 }
 
 .svgContainer {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column;
   align-items: stretch;
-  justify-content: center;
+  justify-content: center; */
   padding: 0 50px;
 }
 
@@ -25,13 +32,17 @@ svg {
   overflow: visible;
   display: block;
   width: 100%;
-  height: 35vh;
+  height: 85vh;
 }
 
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
 button {
   width: 100px;
   border: 1px solid black;
-  margin: 0 auto 5px;
+  margin: 1%;
 }
 
 

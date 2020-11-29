@@ -2,11 +2,10 @@ import { select, scaleBand, scaleLinear } from "d3";
 import React, { useEffect, useRef } from "react";
 import useResizeObserver from "./useResizeObserver";
 
-function RacingBarChart({ data, maxTotal }) {
+function RacingBarChart({ data, maxTotal, unit }) {
   const svgRef = useRef();
   const wrapperRef = useRef();
   const dimensions = useResizeObserver(wrapperRef);
-
   // will be called initially and on every data change
   useEffect(() => {
     const svg = select(svgRef.current);
@@ -39,7 +38,7 @@ function RacingBarChart({ data, maxTotal }) {
     svg.selectAll('.label')
     .data(data, (entry, index) => entry.name)
     .join(enter => enter.append('text').attr('y', (entry, index) => yScale(index) +  yScale.bandwidth() / 2 + 5))
-    .text(entry => `${entry.name} (${entry.value} confirmed)`)
+    .text(entry => `${entry.name} (${entry.value} ${unit})`)
     .attr('class', 'label')
     .attr('x', entry => xScale(entry.value) + 10)
     .transition()
@@ -51,7 +50,7 @@ function RacingBarChart({ data, maxTotal }) {
     <div className="svgContainer" ref={wrapperRef} style={{ marginBottom: "0.3rem" }}>
         <svg ref={svgRef}>
             {/* <g className="x-axis" /> */}
-            <g className="y-axis" />
+            {/* <g className="y-axis" /> */}
 
         </svg>
     </div>

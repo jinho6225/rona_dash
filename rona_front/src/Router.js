@@ -1,20 +1,23 @@
 import React from 'react';
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
+import RacingChartHome from './routes/RacingChartHome';
 import Home from './routes/Home';
-import Contact from './routes/Contact';
+import Navigation from './components/Navigation';
 
 
 const AppRouter = () => {
     
     return (
         <Router>
+            <Navigation />
             <Switch>
                     <>
+
                         <Route exact path='/'>
                             <Home />
                         </Route>
-                        <Route path='/contact'>
-                            <Contact />
+                        <Route path='/racing'>
+                            <RacingChartHome />
                         </Route>
                         {/* <Route path='/privacy-policy'>
                             <Privacy />
