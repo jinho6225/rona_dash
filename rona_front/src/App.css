@@ -1,19 +1,31 @@
+.container {
+  max-width: 1600px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
+  column-gap: 2%;
+  /* row-gap: 2%; */
+  grid-auto-rows: minmax(150px, auto);
+  margin: 3% auto;
+  /* height: 100vh; */
+  padding: 10px 15px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.svgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0 50px;
+}
 
 svg {
   background: #eee;
   overflow: visible;
   display: block;
   width: 100%;
-  height: 94vh;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  height: 100vh;
-  padding: 0 50px;
+  height: 35vh;
 }
 
 button {
@@ -22,12 +34,4 @@ button {
   margin: 0 auto 5px;
 }
 
-.title, .date {
-  margin: 0;
-}
-.date  {
-  font-size: 1rem;
-}
-.label {
-  font-size: 0.7rem;
-}
+

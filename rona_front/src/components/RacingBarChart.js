@@ -1,4 +1,4 @@
-import { select, scaleBand, scaleLinear, axisBottom, axisLeft } from "d3";
+import { select, scaleBand, scaleLinear } from "d3";
 import React, { useEffect, useRef } from "react";
 import useResizeObserver from "./useResizeObserver";
 
@@ -48,7 +48,7 @@ function RacingBarChart({ data, maxTotal }) {
   }, [data, dimensions]);
 
     return (
-    <div ref={wrapperRef} style={{ marginBottom: "0.3rem" }}>
+    <div className="svgContainer" ref={wrapperRef} style={{ marginBottom: "0.3rem" }}>
         <svg ref={svgRef}>
             {/* <g className="x-axis" /> */}
             <g className="y-axis" />
