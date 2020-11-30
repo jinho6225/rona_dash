@@ -92,25 +92,24 @@ function RacingChartHome() {
       setIteration(iteration + 1);
       if (iteration === dataArr.length) {
         setStart(!start);
-        // setIteration(0);
       }
     }
   }, 200);
-
+  
   return (
     <div className="container">
       <div className="chart_container">
         <div className="racingChart">
           <h4 className="title" style={{ marginBottom: "0.3rem" }}>
             Total Confirmed by U.S. State
-            <span className="date"> (Date: {period[iteration]})</span>
+            <span className="date"> (Date: {period[iteration] ? period[iteration] : period[period.length-1]})</span>
           </h4>
           <RacingBarChart data={confirmedData} maxTotal={maxTotal} unit={'confiremd'} />
         </div>
         <div className="racingChart">
           <h4 className="title" style={{ marginBottom: "0.3rem" }}>
             Total Deaths by U.S. State
-            <span className="date"> (Date: {period[iteration]})</span>
+            <span className="date"> (Date: {period[iteration] ? period[iteration] : period[period.length-1]})</span>
           </h4>
           <RacingBarChart data={deathData} maxTotal={maxDeathTotal} unit={'deaths'} />
         </div>
