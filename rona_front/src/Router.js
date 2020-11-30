@@ -11,24 +11,24 @@ const AppRouter = () => {
         <Router>
             <Navigation />
             <Switch>
-                    <>
+                <>
 
-                        <Route exact path='/'>
-                            <Home />
-                        </Route>
-                        <Route path='/racing'>
-                            <RacingChartHome />
-                        </Route>
-                        {/* <Route path='/privacy-policy'>
-                            <Privacy />
-                        </Route>                        
-                        <Route path='/bar-date-detail/:id'>
-                            <BarDateDetail />
-                        </Route>
-                        <Route path='/bar-day-detail/:id'>
-                            <BarDayDetail />
-                        </Route> */}
-                    </>
+                    <Route exact path='/'>
+                        <Home />
+                    </Route>
+                    <Route path='/racing'>
+                        <RacingChartHome />
+                    </Route>
+                    {/* <Route path='/privacy-policy'>
+                        <Privacy />
+                    </Route>                        
+                    <Route path='/bar-date-detail/:id'>
+                        <BarDateDetail />
+                    </Route>
+                    <Route path='/bar-day-detail/:id'>
+                        <BarDayDetail />
+                    </Route> */}
+                </>
             </Switch>
         </Router>
     )

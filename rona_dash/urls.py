@@ -8,7 +8,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('overview/', views.overview, name="overview"),
-    # path('post-list/', views.PostList.as_view(), name="task-list"),
+    path('dynamic/', views.dynamic, name="dynamic"),
     # path('post-detail/<int:pk>', views.post_list, name="task-list"),
 
 ]

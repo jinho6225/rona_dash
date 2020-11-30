@@ -30,7 +30,7 @@ function RacingChartHome() {
   const [province, setProvince] = useState([]);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/overview`)
+    fetch(`http://127.0.0.1:8000/api/dynamic`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

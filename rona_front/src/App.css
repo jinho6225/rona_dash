@@ -45,4 +45,27 @@ button {
   margin: 1%;
 }
 
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 1%;
+  background-color: rgb(245, 245, 245);
+}
 
+.navbar-nav .navbar-nav-li{
+  list-style-type: none;
+  margin-right: 1%;
+  width: max-content;
+}
+
+.navbar-nav .navbar-nav-li a{
+  display: block;
+  color: rgb(104, 104, 104);
+  text-align: center;
+  text-decoration: none;
+}
+.navbar-nav .navbar-nav-li a:hover{
+  background-color: rgb(255, 222, 222);
+}

@@ -9,11 +9,19 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-from .data import array, date_array, province_list, max_total_confirmed_count, death_array, max_total_death_count
-
+from .data import array, date_array, province_list, max_total_confirmed_count, death_array, max_total_death_count, world_df, us_df, state_df
 
 @api_view(['GET'])
 def overview(request):
+    api = {
+        'world_df': world_df,
+        'us_df': us_df,
+        'state_df': state_df,
+    }
+    return Response(api)
+
+@api_view(['GET'])
+def dynamic(request):
     api = {
         'list_of_daily_confirmed_record_by_state': array,
         'date_array': date_array,
