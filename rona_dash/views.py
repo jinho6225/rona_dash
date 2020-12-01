@@ -11,6 +11,20 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from .data import array, date_array, province_list, max_total_confirmed_count, death_array, max_total_death_count, world_df, us_df, state_df, confirmed_us, death_us, world_df_list
 
+confirmed = [{
+    'name':'Global',
+    'value': world_df_list[0],
+},{
+    'name':'US',
+    'value': confirmed_us[0],
+}]
+deaths = [{
+    'name':'Global',
+    'value': world_df_list[1],
+},{
+    'name':'US',
+    'value': death_us[0],
+}]
 
 @api_view(['GET'])
 def overview(request):

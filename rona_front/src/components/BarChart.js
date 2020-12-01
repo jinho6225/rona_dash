@@ -3,14 +3,14 @@ import { select, axisBottom, scaleLinear, axisLeft, scaleBand, max } from "d3";
 import useResizeObserver from "./useResizeObserver";
 
 
-function Barchart({ data }) {
+function Barchart({ data, province }) {
   const svgRef = useRef();
   const wrapperRef = useRef();
   const dimensions = useResizeObserver(wrapperRef)
 
   useEffect(() => {
     const svg = select(svgRef.current);
-    console.log(dimensions)
+    console.log(dimensions, province)
 
     if (!dimensions) return;
 

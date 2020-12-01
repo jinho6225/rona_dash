@@ -1,11 +1,7 @@
-import { arc, pie, select, scaleSequential, interpolateWarm, centroid } from "d3";
-import React, { useEffect, useRef, useState } from "react";
+import { arc, pie, select } from "d3";
+import React, { useEffect, useRef } from "react";
 import useResizeObserver from "./useResizeObserver";
 
-const colors = {
-    "global": '#ffab91',
-    "us": '#ffddc1',
-  };
 
 function PieChart({ data, colors }) {
   const svgRef = useRef();
@@ -22,7 +18,7 @@ function PieChart({ data, colors }) {
     // and transforms them into "d" attributes for path elements
     const arcGenerator = arc()
     .innerRadius(10)
-    .outerRadius(180);
+    .outerRadius(150);
 
     // pie will transform data to instructions for arcGenerator
     const pieGenerator = pie()
