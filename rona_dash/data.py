@@ -3,13 +3,17 @@ import datetime
 
 x = datetime.datetime.now()
 daily_report = f"{x.month}-{int(x.strftime('%d'))-1}-{x.year}"
+daily_report = '11-30-2020'
 # print(daily_report)
-#global confirmed, deaths, recovered
+# #global confirmed, deaths, recovered
 url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily_report}.csv'
 daily_df = pd.read_csv(url)
 # daily_df = pd.read_csv(f'data/{daily_report}-global.csv')
 totals_df = daily_df[['Confirmed', 'Deaths', 'Recovered']].sum().reset_index(name="count")
 world_df = totals_df.rename(columns={'index': 'condition'})
+df = pd.DataFrame(world_df)
+world_df_list = df['count'].tolist()
+world_df_list
 
 #by US
 url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{daily_report}.csv'
@@ -17,7 +21,11 @@ daily_df = pd.read_csv(url)
 # daily_df = pd.read_csv(f'data/{daily_report}.csv')
 us_df = daily_df[['Country_Region', 'Confirmed', 'Deaths']]
 us_df = us_df.groupby("Country_Region").sum().reset_index()
-us_df
+
+df = us_df.drop(['Country_Region'], axis=1)
+df = pd.DataFrame(df)
+confirmed_us = df['Confirmed'].tolist()
+death_us = df['Deaths'].tolist()
 
 #by state
 state_df = daily_df[['Province_State', 'Confirmed', 'Deaths']]
@@ -52,6 +60,8 @@ province_list = confirmed_df[['Province_State']]
 x = datetime.datetime.now()
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))-2}/{year}"
+daily_report = '11/29/20'
+
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
 total_confirmed_count_list = total_confirmed_df.drop(['Province_State'], axis=1)
 # Creating DataFrame   

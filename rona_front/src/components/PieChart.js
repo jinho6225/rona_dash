@@ -2,7 +2,10 @@ import { arc, pie, select, scaleSequential, interpolateWarm, centroid } from "d3
 import React, { useEffect, useRef, useState } from "react";
 import useResizeObserver from "./useResizeObserver";
 
-
+const colors = {
+    "global": '#ffab91',
+    "us": '#ffddc1',
+  };
 
 function PieChart({ data, colors }) {
   const svgRef = useRef();
