@@ -1,11 +1,41 @@
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro';
+}
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
 }
+.main_chart_container {
+  /* min-width: 1200px; */
+  display: grid;
+  grid-template-areas:"part1 part2 part3"
+                      "part4 part4 part4";
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2%;
+  row-gap: 2%;
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0 auto;
+  /* height: 100vh; */
+  padding: 5px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.barChart {
+  grid-area: part1;
+  padding: 0 3%;
+  margin: 0 1%;  
+}
+.pieChart {
+  grid-area: part2;
+  padding: 0 3%;
+  margin: 0 1%;
+}
 
-.chart_container {
+.racing_chart_container {
   /* max-width: 1600px; */
   display: grid;
   grid-template-columns: repeat(2, minmax(650px, 1fr));
@@ -14,7 +44,6 @@
   grid-auto-rows: minmax(150px, auto);
   /* margin: 1%; */
   /* height: 100vh; */
-  padding: 10px 15px;
   text-align: center;
   box-sizing: border-box;
 }
@@ -24,11 +53,19 @@
   /* flex-direction: column;
   align-items: stretch;
   justify-content: center; */
-  padding: 0 50px;
+  padding: 0 30px;
 }
 
-svg {
-  background: #eee;
+.main_svg {
+  background: #f9fbe7;
+  overflow: visible;
+  display: block;
+  width: 100%;
+  height: 45vh;
+}
+
+.racing_svg {
+  background: #fff3e0;
   overflow: visible;
   display: block;
   width: 100%;
@@ -45,13 +82,24 @@ button {
   margin: 1%;
 }
 
-.navbar-nav {
+.nav {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  margin: 0;
+  justify-content: space-between;
+  align-items: center;
   padding: 1%;
-  background-color: rgb(245, 245, 245);
+  background-color: #e8f5e9;
+}
+
+.nav .title a{
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  width: 25%;
+  justify-content: space-evenly;
+  margin: 0;
 }
 
 .navbar-nav .navbar-nav-li{

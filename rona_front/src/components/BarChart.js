@@ -1,23 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import { select, axisBottom, scaleLinear, axisRight, scaleBand } from "d3";
-import ResizeObserver from 'resize-observer-polyfill'
+import React, { useRef, useEffect } from "react";
+import { select, axisBottom, scaleLinear, axisLeft, scaleBand, max } from "d3";
+import useResizeObserver from "./useResizeObserver";
 
-const useResizeObserver = (ref) => {
-    const [dimensions, setDimenstions] = useState(null);
-    useEffect(() => {
-        const observeTarget = ref.current
-        const resizeObserver = new ResizeObserver(entries => {
-            entries.forEach(entry => {
-                setDimenstions(entry.contentRect)
-            })
-        })
-        resizeObserver.observe(observeTarget);
-        return () => {
-            resizeObserver.unobserve(observeTarget)
-        }
-    }, [ref])
-    return dimensions;
-}
 
 function Barchart({ data }) {
   const svgRef = useRef();
@@ -33,22 +17,22 @@ function Barchart({ data }) {
     //scale
     const xScale = scaleBand()
         .domain(data.map((value, index) => index))
-    //   .domain(data.map((val, index) => index))
-      .range([0, dimensions.width]) // change
-      .padding(0.5);
+        .range([0, dimensions.width]) // change
+        .padding(0.5);
 
     const yScale = scaleLinear()
-        .domain([0, 150]) //todo
+        .domain([0, max(data)+5000000]) //todo
         .range([dimensions.height, 0]); // change
 
     const colorScale = scaleLinear()
-        .domain([75, 100, 150])
-        .range(["green", "orange", "red"])
+        .domain([0, (max(data)+50000)/2, max(data)+50000])
+        .range(["red", "green", "orange"])
         .clamp(true);
 
     //create x-axis
     const xAxis = axisBottom(xScale)
-        .ticks(data.length);
+        .ticks(data.length)
+        .tickFormat((d, i) => ['confirmed', "Deaths", "Recovered"][i]); 
 
     svg
         .select(".x-axis")
@@ -56,10 +40,10 @@ function Barchart({ data }) {
         .call(xAxis);
 
     //create y-axis
-    const yAxis = axisRight(yScale);
+    const yAxis = axisLeft(yScale);
     svg
         .select(".y-axis")
-        .style("transform", `translateX(${dimensions.width}px)`)
+        .style("transform", `0`)
         .call(yAxis);
 
     svg
@@ -71,29 +55,28 @@ function Barchart({ data }) {
         .attr('x', (value, index) => xScale(index))
         .attr('y', -dimensions.height)
         .attr('width', xScale.bandwidth())
-        .on("mouseenter", (event, val) => {
-            svg
-                .selectAll(".tooltip")
-                .data([val])
-                .join(enter => enter.append('text').attr('y', yScale(val) - 4))
-                .attr('class', 'tooltip')
-                .text(val)
-                .attr('x', xScale(data.indexOf(val)) + xScale.bandwidth() / 2)
-                .attr('text-anchor', 'middle')
-                .transition()
-                .attr('y', yScale(val) - 8)
-                .attr("opacity", 1);
-        })
-        .on("mouseleave", () => svg.select(".tooltip").remove())
         .transition()
         .attr('fill', colorScale)
         .attr('height', val => dimensions.height - yScale(val))
 
+        svg
+        .selectAll(".content")
+        .data(data)
+        .join(enter => enter.append('text').attr('y', d => yScale(d) - 4))
+        .attr('class', 'content')
+        .text(d => d.toLocaleString())
+        .attr('x', (d, i) => xScale(i) + xScale.bandwidth() / 2)
+        .attr('text-anchor', 'middle')
+        .transition()
+        .attr('y', d => yScale(d) - 8)
+        .attr("opacity", 1);
+        
+
   }, [data, dimensions]);
 
   return (
-    <div className="svgContainer" ref={wrapperRef} style={{ marginBottom: "0.3rem" }}>
-        <svg ref={svgRef}>
+    <div ref={wrapperRef} style={{marginBottom: "1.5rem", marginLeft: "4rem"}}>
+        <svg ref={svgRef} className="main_svg">
             <g className="x-axis" />
             <g className="y-axis" />
         </svg> 

@@ -48,7 +48,7 @@ function RacingBarChart({ data, maxTotal, unit }) {
 
     return (
     <div className="svgContainer" ref={wrapperRef} style={{ marginBottom: "0.3rem" }}>
-        <svg ref={svgRef}>
+        <svg ref={svgRef} className="racing_svg">
             {/* <g className="x-axis" /> */}
             {/* <g className="y-axis" /> */}
 

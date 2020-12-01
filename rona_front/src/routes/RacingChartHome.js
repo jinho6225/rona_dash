@@ -98,16 +98,16 @@ function RacingChartHome() {
   
   return (
     <div className="container">
-      <div className="chart_container">
+      <div className="racing_chart_container">
         <div className="racingChart">
-          <h4 className="title" style={{ marginBottom: "0.3rem" }}>
+          <h4 className="title" style={{ margin: "0.3rem" }}>
             Total Confirmed by U.S. State
             <span className="date"> (Date: {period[iteration] ? period[iteration] : period[period.length-1]})</span>
           </h4>
           <RacingBarChart data={confirmedData} maxTotal={maxTotal} unit={'confiremd'} />
         </div>
         <div className="racingChart">
-          <h4 className="title" style={{ marginBottom: "0.3rem" }}>
+          <h4 className="title" style={{ margin: "0.3rem" }}>
             Total Deaths by U.S. State
             <span className="date"> (Date: {period[iteration] ? period[iteration] : period[period.length-1]})</span>
           </h4>
