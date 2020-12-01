@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-from .data import array, date_array, province_list, max_total_confirmed_count, death_array, max_total_death_count, world_df, us_df, state_df, confirmed_us, death_us, world_df_list
+from .data import array, date_array, province_list, max_total_confirmed_count, death_array, max_total_death_count, world_df, us_df, state_df, confirmed_us, death_us, world_df_list, getConfirmedByState
 
 confirmed = [{
     'name':'Global',
@@ -46,5 +46,15 @@ def dynamic(request):
         'max_total_confirmed_count_list': max_total_confirmed_count,
         'list_of_daily_death_record_by_state': death_array,
         'max_total_death_count_list': max_total_death_count
+    }
+    return Response(api)
+
+@api_view(['GET'])
+def detail(request, state):
+    data = getConfirmedByState(state)
+    api = {
+        'period': data['period'],
+        'confirmed': data['confirmed'],
+        'deaths': data['deaths'],
     }
     return Response(api)
