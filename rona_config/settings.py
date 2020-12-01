@@ -26,7 +26,7 @@ SECRET_KEY = 'hrf15&x1w%(m@o(x0rjw!mg6==y+js0b$zage2b#l%&g63vi!j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -63,7 +63,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # 추가된 부분입니다.
-            os.path.join(BASE_DIR, 'rona_front', 'build'),
+            os.path.join(BASE_DIR, 'rona_front/build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -130,9 +130,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'rona_front', 'build', 'static')
+    os.path.join(BASE_DIR, 'rona_front/build/static')
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'https://localhost:3000',
+    "http://localhost:3000",
 )
