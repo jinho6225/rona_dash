@@ -3,16 +3,18 @@ import datetime
 
 x = datetime.datetime.now()
 daily_report = f"{x.month}-{int(x.strftime('%d'))-1}-{x.year}"
-
+# print(daily_report)
 #global confirmed, deaths, recovered
 url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily_report}.csv'
 daily_df = pd.read_csv(url)
+# daily_df = pd.read_csv(f'data/{daily_report}-global.csv')
 totals_df = daily_df[['Confirmed', 'Deaths', 'Recovered']].sum().reset_index(name="count")
 world_df = totals_df.rename(columns={'index': 'condition'})
 
 #by US
 url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{daily_report}.csv'
 daily_df = pd.read_csv(url)
+# daily_df = pd.read_csv(f'data/{daily_report}.csv')
 us_df = daily_df[['Country_Region', 'Confirmed', 'Deaths']]
 us_df = us_df.groupby("Country_Region").sum().reset_index()
 us_df
@@ -24,6 +26,7 @@ state_df
 
 url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
 df = pd.read_csv(url, error_bad_lines=False)
+# df = pd.read_csv('data/time_series_covid19_confirmed_US.csv')
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
 daily_confirmed_record_by_state = confirmed_df.drop(['Province_State'], axis=1)
@@ -60,6 +63,7 @@ max_total_confirmed_count = max(total_confirmed_count_list)
 # for deaths
 url_death = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv'
 death_df = pd.read_csv(url_death, error_bad_lines=False)
+# death_df = pd.read_csv('data/time_series_covid19_deaths_US.csv')
 death_df = death_df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key', 'Population'], axis=1)
 death_df = death_df.groupby("Province_State").sum().reset_index()
 daily_death_record_by_state = death_df.drop(['Province_State'], axis=1)
