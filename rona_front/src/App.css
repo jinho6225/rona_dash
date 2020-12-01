@@ -10,7 +10,7 @@ body {
   width: 100%;
 }
 .main_chart_container {
-  /* min-width: 1200px; */
+  min-width: 1200px;
   display: grid;
   grid-template-areas:"part1 part2 part3"
                       "part4 part4 part4";
@@ -44,8 +44,11 @@ body {
   padding: 0 3%;
   margin: 0 1%;  
 }
+.detail_chart_container {
+  
+}
 .racing_chart_container {
-  /* max-width: 1600px; */
+  max-width: 1600px;
   display: grid;
   grid-template-columns: repeat(2, minmax(650px, 1fr));
   column-gap: 6%;
@@ -70,7 +73,7 @@ body {
   overflow: visible;
   display: block;
   width: 100%;
-  height: 40vh;
+  height: 38vh;
 }
 
 .racing_svg {

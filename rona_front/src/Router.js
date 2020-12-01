@@ -3,6 +3,7 @@ import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import RacingChartHome from './routes/RacingChartHome';
 import Home from './routes/Home';
 import Navigation from './components/Navigation';
+import Detail from './routes/Detail';
 
 
 const AppRouter = () => {
@@ -12,22 +13,15 @@ const AppRouter = () => {
             <Navigation />
             <Switch>
                 <>
-
                     <Route exact path='/'>
                         <Home />
                     </Route>
                     <Route path='/racing'>
                         <RacingChartHome />
+                    </Route>                     
+                    <Route path='/detail/:state'>
+                        <Detail />
                     </Route>
-                    {/* <Route path='/privacy-policy'>
-                        <Privacy />
-                    </Route>                        
-                    <Route path='/bar-date-detail/:id'>
-                        <BarDateDetail />
-                    </Route>
-                    <Route path='/bar-day-detail/:id'>
-                        <BarDayDetail />
-                    </Route> */}
                 </>
             </Switch>
         </Router>
