@@ -30,8 +30,8 @@ function RacingChartHome() {
   const [province, setProvince] = useState([]);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/dynamic`)
-    // fetch(`https://myungjinho85.pythonanywhere.com/api/dynamic`)
+    // fetch(`http://127.0.0.1:8000/api/dynamic`)
+    fetch(`https://myungjinho85.pythonanywhere.com/api/dynamic`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
