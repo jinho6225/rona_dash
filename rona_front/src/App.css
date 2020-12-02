@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 .main_chart_container {
@@ -18,7 +19,7 @@ body {
   column-gap: 2%;
   row-gap: 2%;
   grid-template-rows: repeat(2, 1fr);
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* height: 100vh; */
   padding: 5px;
   text-align: center;
@@ -64,20 +65,20 @@ body {
   padding: 0 2%;
   margin: 0 1%;
 }
-/* .stackedAreaChart {
-  grid-area: part1;
-  padding: 0 3%;
-  margin: 0 1%;  
-} */
+.racingChart {
+  padding: 0 2%;
+  margin: 0 1%;
+}
 
 .racing_chart_container {
-  max-width: 1600px;
+  max-width: 1200px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(650px, 1fr));
+  justify-content: center;
+  grid-template-columns: repeat(2, minmax(750px, 1fr));
   column-gap: 6%;
   /* row-gap: 2%; */
   grid-auto-rows: minmax(150px, auto);
-  /* margin: 1%; */
+  /* margin: 0 auto; */
   /* height: 100vh; */
   text-align: center;
   box-sizing: border-box;
