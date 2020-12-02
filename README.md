@@ -1,8 +1,8 @@
-# Hellometer
+# Rona_dashboard
 
 ## Description
 
-A full stack Node.js and React.js Data visualization App
+Rona_dashboard! It is a full stack Data visualization App. backend for Python & Django and frontend for React.js(hooks)
 
 
 ## Live Demo
