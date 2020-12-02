@@ -23,7 +23,7 @@ function Detail() {
         fetch(`https://myungjinho85.pythonanywhere.com/api/detail/${state}`)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data, 'data')
+            // console.log(data, 'data')
             setPeriod(data.period)
             setConfirmed(data.confirmed)
             setDeaths(data.deaths)

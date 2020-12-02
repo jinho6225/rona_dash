@@ -18,7 +18,7 @@ function PieChart({ data, colors }) {
     // and transforms them into "d" attributes for path elements
     const arcGenerator = arc()
     .innerRadius(10)
-    .outerRadius(150);
+    .outerRadius(130);
 
     // pie will transform data to instructions for arcGenerator
     const pieGenerator = pie()

@@ -34,7 +34,7 @@ function RacingChartHome() {
     fetch(`https://myungjinho85.pythonanywhere.com/api/dynamic`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setDataArr(data.list_of_daily_confirmed_record_by_state);
         setDeathDataArr(data.list_of_daily_death_record_by_state);
         setPeriod(data.date_array);
