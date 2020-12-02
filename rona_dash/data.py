@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 
 tod = datetime.datetime.now()
-d = datetime.timedelta(days = 1)
+d = datetime.timedelta(days = 2)
 x = tod - d
 daily_report = f"{x.month}-{int(x.strftime('%d'))}-{x.year}"
 # print(daily_report)
@@ -60,8 +60,8 @@ province_list = confirmed_df[['Province_State']]
 
 # total confirmed count list / it needs to get max number for xaxis
 tod = datetime.datetime.now()
-d = datetime.timedelta(days = 1)
-x = tod - d
+d = datetime.timedelta(days = 2)
+x = tod - d 
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))}/{year}"
 
