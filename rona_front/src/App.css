@@ -11,7 +11,7 @@ body {
   width: 100%;
 }
 .main_chart_container {
-  min-width: 1200px;
+  min-width: 1000px;
   display: grid;
   grid-template-areas:"part1 part2 part3"
                       "part4 part4 part4";
@@ -46,7 +46,7 @@ body {
   margin: 0 1%;  
 }
 .detail_chart_container {
-  min-width: 1200px;
+  min-width: 1000px;
   display: grid;
   /* grid-template-areas:"part2"
                       "part1"; */
@@ -71,11 +71,11 @@ body {
 }
 
 .racing_chart_container {
-  max-width: 1200px;
+  min-width: 1000px;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(2, minmax(750px, 1fr));
-  column-gap: 6%;
+  grid-template-columns: repeat(2, 650px);
+  column-gap: 7%;
   /* row-gap: 2%; */
   grid-auto-rows: minmax(150px, auto);
   /* margin: 0 auto; */
@@ -166,4 +166,10 @@ button {
   margin: 0 0.3em 0 0;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 1200px) {
+  .racing_chart_container {
+    grid-template-columns: repeat(auto-fit, 850px);
+  }
 }
