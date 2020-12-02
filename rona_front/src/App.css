@@ -75,7 +75,7 @@ body {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 650px);
-  column-gap: 7%;
+  column-gap: 10%;
   /* row-gap: 2%; */
   grid-auto-rows: minmax(150px, auto);
   /* margin: 0 auto; */
@@ -168,7 +168,7 @@ button {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .racing_chart_container {
     grid-template-columns: repeat(auto-fit, 850px);
   }

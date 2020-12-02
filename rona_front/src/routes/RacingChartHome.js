@@ -95,7 +95,7 @@ function RacingChartHome() {
         setStart(!start);
       }
     }
-  }, 100);
+  }, 200);
   
   return (
     <div className="container">
