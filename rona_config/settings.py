@@ -63,7 +63,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # 추가된 부분입니다.
-            os.path.join(BASE_DIR, 'rona_front/'),
+            os.path.join(BASE_DIR, 'rona_front/build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -130,7 +130,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'rona_front/static')
+    os.path.join(BASE_DIR, 'rona_front/build/static')
 ]
 
 CORS_ORIGIN_WHITELIST = (
