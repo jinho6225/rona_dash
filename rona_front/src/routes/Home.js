@@ -29,7 +29,7 @@ function Home() {
     fetch(`https://myungjinho85.pythonanywhere.com/api/overview`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setWorld(data.world_df.count);
         setConfirmed(data.confirmed_global_us)
         setDeaths(data.deaths_global_us)
