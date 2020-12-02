@@ -40,7 +40,7 @@ Try the application live at [https://myungjinho85.pythonanywhere.com/#/)
    npm install
    ```
 
-4. make virtual env first
+3. make virtual env first
 
    ```shell
    python3 -m venv venv
@@ -52,7 +52,7 @@ Try the application live at [https://myungjinho85.pythonanywhere.com/#/)
    pip install -r requirement.txt
    ```
    
-3. Start the project. Once started you can view the application by opening http://localhost:8000 in your browser.
+5. Start the project. Once started you can view the application by opening http://localhost:8000 in your browser.
 
    ```shell
    npm rub build
