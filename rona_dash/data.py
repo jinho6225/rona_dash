@@ -61,7 +61,7 @@ province_list = confirmed_df[['Province_State']]
 # total confirmed count list / it needs to get max number for xaxis
 tod = datetime.datetime.now()
 d = datetime.timedelta(days = 2)
-x = tod - d
+x = tod - d 
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))}/{year}"
 
