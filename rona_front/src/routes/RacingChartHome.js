@@ -30,8 +30,8 @@ function RacingChartHome() {
   const [province, setProvince] = useState([]);
 
   useEffect(() => {
-    // fetch(`http://127.0.0.1:8000/api/dynamic`)
-    fetch(`https://myungjinho85.pythonanywhere.com/api/dynamic`)
+    fetch(`http://127.0.0.1:8000/api/dynamic`)
+    // fetch(`https://myungjinho85.pythonanywhere.com/api/dynamic`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -54,8 +54,8 @@ function RacingChartHome() {
 
   useInterval(() => {
     if (start) {
-      let copied = JSON.parse(JSON.stringify(confirmedData));
-      let deathCopied = JSON.parse(JSON.stringify(deathData));
+      let copied = confirmedData.slice();
+      let deathCopied = deathData.slice();
       copied.sort(function (a, b) {
         var nameA = a.name.toUpperCase(); // ignore upper and lowercase
         var nameB = b.name.toUpperCase(); // ignore upper and lowercase
@@ -95,7 +95,7 @@ function RacingChartHome() {
         setStart(!start);
       }
     }
-  }, 200);
+  }, 100);
   
   return (
     <div className="container">
