@@ -22,6 +22,19 @@ Try the application live at [https://myungjinho85.pythonanywhere.com/#/)
 - Python
 - Django
 
+## Features
+
+- User can check the confirmed, death, and recovery cases chart for global totals.
+- User can check the percentage of US confirmed cases from global cases.
+- User can check the percentage of US death cases from global cases.
+- User can check statical data for confirmed cases per U.S state:
+   - If you click the bar chart, you can track confirmed cases and death cases per state.
+   - Note that in the NY case, the bar chart is high from the beginning.
+   - You can check if cases are getting higher over a period of days.
+- User can check dynamic data for confirmed and deaths per U.S state:
+   - You can check which U.S. state has the top record by a specific moment.
+   - For example, you can check which moment Texas beats California per record type.
+
 
 ## Development
 
