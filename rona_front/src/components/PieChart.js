@@ -19,6 +19,7 @@ function PieChart({ data, colors }) {
     console.log(dimensions, 'dimen')
     let radius = 130
     if (dimensions.height < 250) radius = 100
+    if (dimensions.height < 200) radius = 80
     const arcGenerator = arc()
     .innerRadius(10)
     .outerRadius(radius);
