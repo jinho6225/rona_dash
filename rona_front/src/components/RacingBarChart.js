@@ -10,6 +10,7 @@ function RacingBarChart({ data, maxTotal, unit }) {
   useEffect(() => {
     const svg = select(svgRef.current);
     if (!dimensions) return;
+    console.log(dimensions, 'dime')
     // sorting the data
     data.sort((a, b) => b.value - a.value);
 
@@ -35,9 +36,14 @@ function RacingBarChart({ data, maxTotal, unit }) {
     .attr("y", (entry, index) => yScale(index));
 
     //draw the labels
+    let fontSz = '0.9em'
+    if (dimensions.height < 700) fontSz = '0.7em'
+    if (dimensions.height < 550) fontSz = '0.55em'
+
     svg.selectAll('.label')
     .data(data, (entry, index) => entry.name)
     .join(enter => enter.append('text').attr('y', (entry, index) => yScale(index) +  yScale.bandwidth() / 2 + 5))
+    .style('font-size', fontSz)
     .text(entry => `${entry.name} (${entry.value} ${unit})`)
     .attr('class', 'label')
     .attr('x', entry => xScale(entry.value) + 10)
