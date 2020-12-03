@@ -39,6 +39,7 @@ function RacingBarChart({ data, maxTotal, unit }) {
     let fontSz = '0.9em'
     if (dimensions.height < 700) fontSz = '0.7em'
     if (dimensions.height < 550) fontSz = '0.55em'
+    if (dimensions.height < 400) fontSz = '0.4em'
 
     svg.selectAll('.label')
     .data(data, (entry, index) => entry.name)
