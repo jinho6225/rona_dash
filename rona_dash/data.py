@@ -27,12 +27,13 @@ async def download(i, lst, lst2):
 			async with aiofiles.open(f'data/{lst2[i]}-{yesterday}.csv', 'w') as f:
 				await f.write(await resp.text())
 
-if not os.path.exists('data'):
-	os.makedirs('data')
-	print('aaa')
+def down_csv():
+    if not os.path.exists('data'):
+        os.makedirs('data')
+        print('aaa')
 
-	tasks = [download(i, lst, lst2) for i in range(0, len(lst))]
-	asyncio.run(asyncio.wait(tasks))
+        tasks = [download(i, lst, lst2) for i in range(0, len(lst))]
+        asyncio.run(asyncio.wait(tasks))
 
 
 
