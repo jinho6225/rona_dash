@@ -4,7 +4,8 @@ import time
 import asyncio
 import aiohttp
 import aiofiles
-import os
+import shutil, os
+
 
 start = time.time()
 
@@ -13,6 +14,7 @@ d = datetime.timedelta(days = 1)
 x = tod - d
 yesterday = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
 print(yesterday, '1')
+
 
 global_data = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{yesterday}.csv'
 us_data = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv'
@@ -27,7 +29,16 @@ async def download(i, lst, lst2):
 			async with aiofiles.open(f'data/{lst2[i]}-{yesterday}.csv', 'w') as f:
 				await f.write(await resp.text())
 
-def down_csv():
+def clean_down_csv():
+    tod = datetime.datetime.now()
+    def job():
+        print('work?')
+        shutil.rmtree('./data')
+
+    if tod.hour == 14 and tod.minute == 58:
+        job()
+    print(tod.hour, tod.minute, 'tod.minute')
+
     if not os.path.exists('data'):
         os.makedirs('data')
         print('aaa')
