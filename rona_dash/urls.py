@@ -10,5 +10,4 @@ urlpatterns = [
     path('overview/', views.overview, name="overview"),
     path('dynamic/', views.dynamic, name="dynamic"),
     path('detail/<str:state>', views.detail, name="detail"),
-
 ]

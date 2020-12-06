@@ -11,7 +11,6 @@ function DetailBarChart({ data, period, opt=false }) {
 
   useEffect(() => {
     const svg = select(svgRef.current);
-    console.log(dimensions)
 
     if (!dimensions) return;
 
