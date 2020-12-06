@@ -10,12 +10,10 @@ import shutil, os
 start = time.time()
 
 tod = datetime.datetime.now()
-print(tod, 'now')
 d = datetime.timedelta(days = 1)
 x = tod - d
 yesterday = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
 print(yesterday, '1')
-
 
 global_data = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{yesterday}.csv'
 us_data = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv'
@@ -32,13 +30,15 @@ async def download(i, lst, lst2):
 
 def clean_down_csv():
     tod = datetime.datetime.now()
+    d = datetime.timedelta(days = 2)
+    x = tod - d
+    yesterday = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
     def job():
         print('work?')
         shutil.rmtree('./data')
 
-    if tod.hour == 23 and tod.minute == 58:
+    if (os.path.isfile(f'data/us_data-{yesterday}.csv')):
         job()
-    print(tod.hour, tod.minute, 'tod.minute')
 
     if not os.path.exists('data'):
         os.makedirs('data')
@@ -54,8 +54,13 @@ if not os.path.exists('data'):
     daily_df = pd.read_csv(url)
     print('a')
 else:
-    daily_df = pd.read_csv(f'data/global_data-{yesterday}.csv')
-    print('c')
+    if (os.path.isfile(f'data/global_data-{yesterday}.csv')):
+        daily_df = pd.read_csv(f'data/global_data-{yesterday}.csv')
+        print('c')
+    else:
+        url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{yesterday}.csv'
+        daily_df = pd.read_csv(url)
+        print('y')
 
 
 totals_df = daily_df[['Confirmed', 'Deaths', 'Recovered']].sum().reset_index(name="count")
@@ -70,8 +75,13 @@ if not os.path.exists('data'):
     daily_df = pd.read_csv(url)
     print('a')
 else:
-    daily_df = pd.read_csv(f'data/us_data-{yesterday}.csv')
-    print('c')
+    if (os.path.isfile(f'data/us_data-{yesterday}.csv')):
+        daily_df = pd.read_csv(f'data/us_data-{yesterday}.csv')
+        print('c')
+    else:
+        url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv'
+        daily_df = pd.read_csv(url)
+        print('y')
 
 us_df = daily_df[['Country_Region', 'Confirmed', 'Deaths']]
 us_df = us_df.groupby("Country_Region").sum().reset_index()
@@ -93,8 +103,14 @@ if not os.path.exists('data'):
     df = pd.read_csv(url, error_bad_lines=False)
     print('a')
 else:
-    df = pd.read_csv(f'data/confirmed_us-{yesterday}.csv')
-    print('c')
+    if (os.path.isfile(f'data/confirmed_us-{yesterday}.csv')):
+        df = pd.read_csv(f'data/confirmed_us-{yesterday}.csv')
+        print('c')
+    else:
+        url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
+        df = pd.read_csv(url, error_bad_lines=False)
+        print('y')        
+
 
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
@@ -125,6 +141,9 @@ x = tod - d
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))}/{year}"
 
+print(daily_report, '3')
+
+
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
 total_confirmed_count_list = total_confirmed_df.drop(['Province_State'], axis=1)
 # Creating DataFrame   
@@ -139,8 +158,13 @@ if not os.path.exists('data'):
     death_df = pd.read_csv(url_death, error_bad_lines=False)
     print('a')
 else:
-    death_df = pd.read_csv(f'data/deaths_us-{yesterday}.csv')
-    print('c')
+    if (os.path.isfile(f'data/deaths_us-{yesterday}.csv')):
+        death_df = pd.read_csv(f'data/deaths_us-{yesterday}.csv')
+        print('c')
+    else:
+        url_death = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv'
+        death_df = pd.read_csv(url_death, error_bad_lines=False)
+        print('y')
 
 
 death_df = death_df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key', 'Population'], axis=1)
@@ -173,8 +197,14 @@ def getConfirmedByState(state):
             df = pd.read_csv(url, error_bad_lines=False)
             print('aa')
         else:
-            df = pd.read_csv(f'data/{condition}_us-{yesterday}.csv')
-            print('cc')
+            if (os.path.isfile(f'data/{condition}_us-{yesterday}.csv')):
+                df = pd.read_csv(f'data/{condition}_us-{yesterday}.csv')
+                print('cc')                
+            else:
+                url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_{condition}_US.csv'
+                df = pd.read_csv(url, error_bad_lines=False)
+                print('yy')
+
 
         if condition == 'deaths':
             df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key', 'Population'], axis=1)
@@ -221,4 +251,5 @@ def getConfirmedByState(state):
 
 
 end = time.time()
+
 print(f'time taken: {end-start}')

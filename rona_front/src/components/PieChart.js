@@ -16,8 +16,6 @@ function PieChart({ data, colors }) {
     const totalSum = data.reduce(reducer, 0)
     // arc takes instructions (objects with special properties, like startAngle, endAngle, etc.)
     // and transforms them into "d" attributes for path elements
-    console.log(dimensions, 'dimen')
-
     let radius = 130
     if (dimensions.height < 250) {
 	radius = 100
