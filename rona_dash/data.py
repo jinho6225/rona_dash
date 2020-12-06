@@ -34,6 +34,9 @@ def clean_down_csv():
     x = tod - d
     yesterday = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
     print(yesterday, 'what?')
+    print(os.path.isfile(f'data/us_data-{yesterday}.csv'), 'watsup')
+    print(os.path.exists('data'), 'hey')
+    
     def job():
         print('work?')
         shutil.rmtree('./data')
