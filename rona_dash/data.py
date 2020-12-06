@@ -15,9 +15,6 @@ x = tod - d
 yesterday = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
 print(yesterday, '1')
 
-
-
-
 global_data = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{yesterday}.csv'
 us_data = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv'
 confirmed_us = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
@@ -50,7 +47,6 @@ def clean_down_csv():
 
         tasks = [download(i, lst, lst2) for i in range(0, len(lst))]
         asyncio.run(asyncio.wait(tasks))
-
 
 
 # #global confirmed, deaths, recovered
@@ -116,6 +112,7 @@ else:
         df = pd.read_csv(url, error_bad_lines=False)
         print('y')        
 
+
 df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key'], axis=1)
 confirmed_df = df.groupby("Province_State").sum().reset_index()
 
@@ -144,7 +141,9 @@ d = datetime.timedelta(days = 1)
 x = tod - d 
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))}/{year}"
+
 print(daily_report, '3')
+
 
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
 total_confirmed_count_list = total_confirmed_df.drop(['Province_State'], axis=1)
@@ -207,6 +206,7 @@ def getConfirmedByState(state):
                 df = pd.read_csv(url, error_bad_lines=False)
                 print('yy')
 
+
         if condition == 'deaths':
             df = df.drop(['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2', 'Country_Region', 'Lat', 'Long_', 'Combined_Key', 'Population'], axis=1)
         else:
@@ -252,4 +252,5 @@ def getConfirmedByState(state):
 
 
 end = time.time()
+
 print(f'time taken: {end-start}')
