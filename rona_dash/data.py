@@ -33,10 +33,14 @@ def clean_down_csv():
     d = datetime.timedelta(days = 2)
     x = tod - d
     yesterday = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
+<<<<<<< HEAD
     print(yesterday, 'what?')
     print(os.path.isfile(f'data/us_data-{yesterday}.csv'), 'watsup')
     print(os.path.exists('data'), 'hey')
     
+=======
+    print(yesterday, 'whatup')
+>>>>>>> a15014df08b3df3e98e4f565516813e44e2fc7a2
     def job():
         print('work?')
         shutil.rmtree('./data')
