@@ -2,9 +2,9 @@ import pandas as pd
 import datetime
 
 tod = datetime.datetime.now()
-d = datetime.timedelta(days = 3)
+d = datetime.timedelta(days = 1)
 x = tod - d
-daily_report = f"{x.month}-{int(x.strftime('%d'))}-{x.year}"
+daily_report = f"{x.month}-{(x.strftime('%d'))}-{x.year}"
 # print(daily_report)
 # #global confirmed, deaths, recovered
 url = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily_report}.csv'
@@ -60,7 +60,7 @@ province_list = confirmed_df[['Province_State']]
 
 # total confirmed count list / it needs to get max number for xaxis
 tod = datetime.datetime.now()
-d = datetime.timedelta(days = 3)
+d = datetime.timedelta(days = 1)
 x = tod - d 
 year = str(x.year)[0:2]
 daily_report = f"{x.month}/{int(x.strftime('%d'))}/{year}"
