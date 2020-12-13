@@ -49,6 +49,16 @@ def get_list(df):
     return lst
 array = get_list(df)
 
+def get_max_confirmed_list(df):
+    lst = []
+    for col in df.columns: 
+        total_confirmed_count_list = df[col].tolist()
+        lst.append(max(total_confirmed_count_list))
+    return lst
+max_Confirmed_array = get_max_confirmed_list(df)
+
+
+
 def get_date_list(df):
     date_lst = []
     for col in df.columns: 
@@ -69,8 +79,8 @@ daily_report = f"{x.month}/{int(x.strftime('%d'))}/{year}"
 total_confirmed_df = confirmed_df[['Province_State', f'{daily_report}']]
 total_confirmed_count_list = total_confirmed_df.drop(['Province_State'], axis=1)
 # Creating DataFrame   
-df = pd.DataFrame(total_confirmed_count_list)   
-total_confirmed_count_list = df[daily_report].tolist()   
+df = pd.DataFrame(total_confirmed_count_list)
+total_confirmed_count_list = df[daily_report].tolist()
 max_total_confirmed_count = max(total_confirmed_count_list)
 
 
@@ -89,6 +99,15 @@ def death_get_list(df):
         lst.append(total_confirmed_count_list)
     return lst
 death_array = death_get_list(df)
+
+def get_max_death_list(df):
+    lst = []
+    for col in df.columns: 
+        total_deaths_count_list = df[col].tolist()
+        lst.append(max(total_deaths_count_list))
+    return lst
+max_deaths_array = get_max_death_list(df)
+
 
 # total confirmed count list / it needs to get max number for xaxis
 total_death_df = death_df[['Province_State', f'{daily_report}']]

@@ -11,6 +11,7 @@ function RacingBarChart({ data, maxTotal, unit }) {
     const svg = select(svgRef.current);
     if (!dimensions) return;
     console.log(dimensions, 'dime')
+    
     // sorting the data
     data.sort((a, b) => b.value - a.value);
 
@@ -19,8 +20,31 @@ function RacingBarChart({ data, maxTotal, unit }) {
         .domain(data.map((value, index) => index))
         .range([0, dimensions.height]);
 
+    let maxNum = 5
+    if (maxTotal < 100000) {
+        maxNum = maxTotal + 30000
+    } else if (maxTotal < 200000) {
+        maxNum = maxTotal + 30000
+    } else if (maxTotal < 400000) {
+        maxNum = maxTotal + 30000
+    } else if (maxTotal < 600000) {
+        maxNum = maxTotal + 30000
+    } else if (maxTotal < 800000) {
+        maxNum = maxTotal + 30000
+    } else if (maxTotal < 1000000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 1200000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 1400000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 1600000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 1800000) {
+        maxNum = maxTotal + 200000
+    }
+
     const xScale = scaleLinear()
-        .domain([0, maxTotal+50000])
+        .domain([0, maxNum])
         .range([0, dimensions.width]);
 
     //draw the bars

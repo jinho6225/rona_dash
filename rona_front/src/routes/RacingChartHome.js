@@ -24,7 +24,9 @@ function RacingChartHome() {
   const [dataArr, setDataArr] = useState([]);
   const [deathdataArr, setDeathDataArr] = useState([]);
   const [period, setPeriod] = useState([]);
+  const [maxTotalList, setMaxTotalList] = useState([]);
   const [maxTotal, setMaxTotal] = useState(0);
+  const [maxDeathTotalList, setMaxDeathTotalList] = useState([]);
   const [maxDeathTotal, setMaxDeathTotal] = useState(0);
 
   const [province, setProvince] = useState([]);
@@ -34,12 +36,11 @@ function RacingChartHome() {
     fetch(`https://myungjinho85.pythonanywhere.com/api/dynamic`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setDataArr(data.list_of_daily_confirmed_record_by_state);
         setDeathDataArr(data.list_of_daily_death_record_by_state);
         setPeriod(data.date_array);
-        setMaxTotal(data.max_total_confirmed_count_list);
-        setMaxDeathTotal(data.max_total_death_count_list);
+        setMaxTotalList(data.max_total_confirmed_count_list);
+        setMaxDeathTotalList(data.max_total_death_count_list);
         setProvince(data.province_list);
         isFirstRender.current = false;
       });
@@ -90,6 +91,8 @@ function RacingChartHome() {
         }
         setDeathData(deathCopied);
       }
+      setMaxTotal(maxTotalList[iteration]);
+      setMaxDeathTotal(maxDeathTotalList[iteration]);
       setIteration(iteration + 1);
       if (iteration === dataArr.length) {
         setStart(!start);
@@ -116,10 +119,10 @@ function RacingChartHome() {
         </div>
       </div>
       <div className="btn-container">
-        <button onClick={() => setStart(!start)}>
+        <button className="btn-two green rounded" onClick={() => setStart(!start)}>
             {start ? "Stop the race" : "Start the race!"}
         </button>
-        <button onClick={() => {
+        <button className="btn-two green rounded" onClick={() => {
             setIteration(0)
             setStart(!start)
         }}>

@@ -118,11 +118,10 @@ body {
 .btn-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 button {
-  width: 100px;
-  border: 1px solid black;
-  margin: 1%;
+  width: 100%;
 }
 
 .nav {
@@ -172,4 +171,55 @@ button {
   .racing_chart_container {
     grid-template-columns: repeat(auto-fit, 850px);
   }
+}
+
+.green  {background: #82c8a0;}
+
+.btn-two {
+  margin: 9px;
+  width: 12%;
+}
+.btn-two.green   {background-color: #9abf7f;}
+
+.rounded {
+  border-radius: 10px;
+}
+.btn.green {box-shadow: 0px 4px 0px #87a86f;}
+.btn.green:active {box-shadow: 0 0 #87a86f; background-color: #87a86f;}
+.btn-two {
+	color: white;	
+	padding: 15px 25px;
+	display: inline-block;
+	border: 1px solid rgba(0,0,0,0.21);
+	border-bottom-color: rgba(0,0,0,0.34);
+	text-shadow:0 1px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
+				      0 2px 0 -1px rgba(0,0,0,0.13), 
+				      0 3px 0 -1px rgba(0,0,0,0.08), 
+				      0 3px 13px -1px rgba(0,0,0,0.21);
+}
+.btn-two:active {
+	top: 1px;
+	border-color: rgba(0,0,0,0.34) rgba(0,0,0,0.21) rgba(0,0,0,0.21);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.89),0 1px rgba(0,0,0,0.05) inset;
+	position: relative;
+}
+
+#navbarTitle {
+  font-size: 1.5rem;
+  text-align: center;
+  height:5vh;
+  line-height: 5vh;
+  color: #fcedd8;
+  font-family: 'Niconne', cursive;
+  font-weight: 700;
+  text-shadow:1px 1px 0px #fcedd8,  
+              2px 2px 0px #eb452b, 
+              3px 3px 0px #efa032, 
+              4px 4px 0px #46b59b, 
+              5px 5px 0px #017e7f, 
+              6px 6px 0px #052939, 
+              7px 7px 0px #c11a2b, 
+              8px 8px 0px #c11a2b;
+  
 }

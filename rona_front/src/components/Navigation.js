@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 function Navigation() {
     return (
             <div className="nav" id="navbarNav">
-                <h3 className="title" style={{ margin: "0.2rem" }}>
+                <h3 className="title" style={{ margin: "0.2rem" }} id="navbarTitle">
                 <Link to='/'>COVID Tracker</Link></h3>
                 <ul className="navbar-nav">
                     <li className="navbar-nav-li">
