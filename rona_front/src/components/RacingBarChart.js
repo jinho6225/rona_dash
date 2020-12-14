@@ -41,6 +41,10 @@ function RacingBarChart({ data, maxTotal, unit }) {
         maxNum = maxTotal + 200000
     } else if (maxTotal < 1800000) {
         maxNum = maxTotal + 200000
+    } else if (maxTotal < 2000000) {
+	maxNum = maxTotal + 200000
+    } else if (maxTotal < 2200000) {
+	maxNum = maxTotal + 200000
     }
 
     const xScale = scaleLinear()
