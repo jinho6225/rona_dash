@@ -10,7 +10,7 @@ function RacingBarChart({ data, maxTotal, unit }) {
   useEffect(() => {
     const svg = select(svgRef.current);
     if (!dimensions) return;
-    console.log(dimensions, 'dime')
+    console.log(data, 'data')
     
     // sorting the data
     data.sort((a, b) => b.value - a.value);
@@ -40,6 +40,18 @@ function RacingBarChart({ data, maxTotal, unit }) {
     } else if (maxTotal < 1600000) {
         maxNum = maxTotal + 200000
     } else if (maxTotal < 1800000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 2000000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 2200000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 2400000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 2600000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 2800000) {
+        maxNum = maxTotal + 200000
+    } else if (maxTotal < 3000000) {
         maxNum = maxTotal + 200000
     }
 
