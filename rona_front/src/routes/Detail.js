@@ -19,8 +19,8 @@ function Detail() {
 
     let { state } = useParams();
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/detail/${state}`)
-        // fetch(`https://myungjinho85.pythonanywhere.com/api/detail/${state}`)
+        // fetch(`http://127.0.0.1:8000/api/detail/${state}`)
+        fetch(`https://myungjinho85.pythonanywhere.com/api/detail/${state}`)
         .then((res) => res.json())
         .then((data) => {
             // console.log(data, 'data')

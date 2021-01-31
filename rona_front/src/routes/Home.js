@@ -25,8 +25,8 @@ function Home() {
 
   const today = useRef(Today());
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/overview`)
-    // fetch(`https://myungjinho85.pythonanywhere.com/api/overview`)
+    // fetch(`http://127.0.0.1:8000/api/overview`)
+    fetch(`https://myungjinho85.pythonanywhere.com/api/overview`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
